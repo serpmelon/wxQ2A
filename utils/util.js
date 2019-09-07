@@ -39,6 +39,7 @@ function appLogin() {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
+          
           console.log(res.data);
           wx.setStorageSync("openId", res.data);
         },
