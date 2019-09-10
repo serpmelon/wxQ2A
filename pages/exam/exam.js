@@ -95,7 +95,7 @@ Page({
       data: {
         'questionId': questionId,
         'answerId': answerId,
-        'openId': openId
+        'openId': openId.data
       },
       header: {
         'content-type': 'application/json'
