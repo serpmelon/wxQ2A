@@ -19,7 +19,8 @@ const formatNumber = n => {
 module.exports = {
   formatTime: formatTime,
   appLogin: appLogin,
-  request: simpleRequest
+  request: simpleRequest,
+  examContentInit: examContentInit
 }
 
 function appLogin() {
@@ -67,6 +68,24 @@ function simpleRequest(url, method, params) {
     },
     fail(res) {
       console.log("fail to login");
+    }
+  })
+}
+
+function examContentInit() {
+  wx.request({
+    url: globalData.constant.context + '/exam/content',
+    method: 'get',
+    data: {
+      appid: '12244444'
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    success(res) {
+      console.log("res " + res);
+      globalData.variable.examContext = res.data;
+      console.log("app array" + globalData.variable.examContext);
     }
   })
 }

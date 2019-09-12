@@ -42,20 +42,6 @@ App({
    */
   dataInit: function() {
 
-    wx.request({
-      url: globalData.constant.context + '/exam/content',
-      method: 'get',
-      data: {
-        appid: '12244444'
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success(res) {
-        console.log("res " + res);
-        globalData.variable.examContext = res.data;
-        console.log("app array" + globalData.variable.examContext);
-      }
-    })
+    util.examContentInit();
   }
 })

@@ -86,7 +86,7 @@ Page({
     var url = '/exam/score';
     var method = 'post';
     var openId = wx.getStorageSync('openId');
-    debugger
+    
     // var result = util.request(url, method, params);
     // console.log(result);
     wx.request({

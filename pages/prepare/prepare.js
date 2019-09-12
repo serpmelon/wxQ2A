@@ -1,10 +1,18 @@
-//index.js
-//获取应用实例
+
+var util = require('../../utils/util.js');
+var globalData = require('../../utils/constant.js');
+
 const app = getApp()
 
 Page({
   data: {
     countDownNum: 3,
+  },
+  onLoad: function() {
+    var examContext = globalData.variable.examContext;
+    if(examContext) {
+      util.examContentInit();
+    }
   },
   onShow: function() {
 
