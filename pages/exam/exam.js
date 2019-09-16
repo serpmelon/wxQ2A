@@ -102,10 +102,20 @@ Page({
       },
       success(res) {
         console.log(res.data);
+        if(!res.data.data) {
+          this.gotoError();
+        }
       },
       fail(res) {
         console.log("fail to score");
       }
+    })
+  },
+
+  gotoError: function () {
+
+    wx.navigateTo({
+      url: '/pages/error/wrong/',
     })
   }
 

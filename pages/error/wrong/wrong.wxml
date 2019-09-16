@@ -1,0 +1,6 @@
+<!--pages/error/wrong/wrong.wxml-->
+<view class="container">
+  <view class="usermotto">
+    <text class="user-motto">回答错误～</text>
+  </view>
+</view>

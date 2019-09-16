@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/prepare/prepare",
-    "pages/exam/exam"
+    "pages/exam/exam",
+    "pages/error/error.wxml",
+    "pages/error/wrong/wrong"
   ],
   "window": {
     "backgroundTextStyle": "light",
