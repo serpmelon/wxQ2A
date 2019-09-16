@@ -8,7 +8,8 @@ Page({
     QA: [],
     index: 0,
     showQA: {},
-    countDownNum: 3
+    countDownNum: 3,
+    isCorrect: true
   },
 
   onLoad: function() {
@@ -58,10 +59,12 @@ Page({
       })
 
       const that = this;
-      setTimeout(function() {
-        console.log("count " + num);
-        that.countDown();
-      }, 1000)
+      if(this.data.isCorrect) {
+        setTimeout(function () {
+          console.log("count " + num);
+          that.countDown();
+        }, 1000)
+      }
     }
   },
 
@@ -87,8 +90,7 @@ Page({
     var method = 'post';
     var openId = wx.getStorageSync('openId');
     
-    // var result = util.request(url, method, params);
-    // console.log(result);
+    var that = this;
     wx.request({
       url: globalData.constant.context + url,
       method: method,
@@ -103,7 +105,10 @@ Page({
       success(res) {
         console.log(res.data);
         if(!res.data.data) {
-          this.gotoError();
+          that.setData({
+            isCorrect: false
+          });
+          that.gotoError();
         }
       },
       fail(res) {
@@ -113,9 +118,8 @@ Page({
   },
 
   gotoError: function () {
-
     wx.navigateTo({
-      url: '/pages/error/wrong/',
+      url: '/pages/error/wrong/wrong'
     })
   }
 
