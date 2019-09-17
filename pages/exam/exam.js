@@ -8,8 +8,9 @@ Page({
     QA: [],
     index: 0,
     showQA: {},
-    countDownNum: 3,
-    isCorrect: true
+    countDownNum: globalData.constant.examCountdown,
+    // 答题状态 1表示未答题 2正确 -1 错误
+    state: 1
   },
 
   onLoad: function() {
@@ -59,11 +60,14 @@ Page({
       })
 
       const that = this;
-      if(this.data.isCorrect) {
+      if(this.data.state == 2) {
         setTimeout(function () {
           console.log("count " + num);
           that.countDown();
         }, 1000)
+      } else if (this.data.state == 1) {
+        this.reply(this.data.showQA.id, -1);
+        this.gotoError();
       }
     }
   },
@@ -106,7 +110,7 @@ Page({
         console.log(res.data);
         if(!res.data.data) {
           that.setData({
-            isCorrect: false
+            state: -1
           });
           that.gotoError();
         }
