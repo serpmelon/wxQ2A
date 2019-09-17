@@ -1,0 +1,6 @@
+<!--pages/result/success/success.wxml-->
+<view class="container">
+  <view class="usermotto">
+    <text class="user-motto">恭喜完成所有答题～</text>
+  </view>
+</view>

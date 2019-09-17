@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/prepare/prepare",
     "pages/exam/exam",
-    "pages/error/wrong/wrong"
+    "pages/result/wrong/wrong",
+    "pages/result/success/success"
   ],
   "window": {
     "backgroundTextStyle": "light",
