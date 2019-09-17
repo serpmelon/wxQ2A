@@ -1,4 +1,4 @@
-var globalData = require ('./constant.js');
+var globalData = require('./constant.js');
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -20,7 +20,8 @@ module.exports = {
   formatTime: formatTime,
   appLogin: appLogin,
   request: simpleRequest,
-  examContentInit: examContentInit
+  examContentInit: examContentInit,
+  gotoError: gotoError
 }
 
 function appLogin() {
@@ -40,7 +41,7 @@ function appLogin() {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
-          
+
           console.log(res.data);
           wx.setStorageSync("openId", res.data);
         },
@@ -72,6 +73,9 @@ function simpleRequest(url, method, params) {
   })
 }
 
+/**
+ * 答题初始化
+ */
 function examContentInit() {
   wx.request({
     url: globalData.constant.context + '/exam/content',
@@ -87,5 +91,27 @@ function examContentInit() {
       globalData.variable.examContext = res.data;
       console.log("app array" + globalData.variable.examContext);
     }
+  })
+}
+/**
+ * 跳转回答错误页面
+ */
+function gotoError() {
+  var url = '/pages/result/wrong/wrong';
+  gotoUrl(url);
+}
+/**
+ * 跳转答题成功页面
+ */
+function gotoSuccess() {
+  var url = '/pages/result/success/success';
+  gotoUrl(url);
+}
+/**
+ * 页面跳转
+ */
+function gotoUrl(url) {
+  wx.navigateTo({
+    url: url
   })
 }

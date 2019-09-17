@@ -5,9 +5,14 @@ const app = getApp()
 
 Page({
   data: {
+    // 问题集合
     QA: [],
+    qaLength: 0,
+    // 问题序号
     index: 0,
+    // 展示的问题答案
     showQA: {},
+    // 每道题倒计时时间
     countDownNum: globalData.constant.examCountdown,
     // 答题状态 1表示未答题 2正确 -1 错误
     state: 1
@@ -17,7 +22,8 @@ Page({
     console.log("array  " + globalData.variable.examContext);
     this.setData({
       QA: globalData.variable.examContext,
-      showQA: globalData.variable.examContext[this.data.index]
+      showQA: globalData.variable.examContext[this.data.index],
+      qaLength: globalData.variable.examContext.length
     })
     console.log("launch");
   },
@@ -28,19 +34,26 @@ Page({
     this.countDown();
   },
 
+  /**
+   * 倒计时
+   */
   countDown: function() {
 
-    let num = this.data.countDownNum;
+    var num = this.data.countDownNum;
 
     var index = this.data.index;
-    var length = this.data.QA.length;
+    var length = this.data.qaLength;
     console.log(length);
     if (index == length) {
       console.log("game over");
       return;
     }
-
+debugger
     if (num <= 0) {
+      if (this.data.state == 1) {
+        this.reply(this.data.showQA.id, -1);
+        util.gotoError();
+      }
       index++;
       this.setData({
         index: index,
@@ -60,14 +73,11 @@ Page({
       })
 
       const that = this;
-      if(this.data.state == 2) {
-        setTimeout(function () {
+      if (this.data.state == 2) {
+        setTimeout(function() {
           console.log("count " + num);
           that.countDown();
         }, 1000)
-      } else if (this.data.state == 1) {
-        this.reply(this.data.showQA.id, -1);
-        this.gotoError();
       }
     }
   },
@@ -93,7 +103,7 @@ Page({
     var url = '/exam/score';
     var method = 'post';
     var openId = wx.getStorageSync('openId');
-    
+
     var that = this;
     wx.request({
       url: globalData.constant.context + url,
@@ -108,11 +118,15 @@ Page({
       },
       success(res) {
         console.log(res.data);
-        if(!res.data.data) {
+        if (res.data.data) { // 回答正确，设置状态为2
+          that.setData({
+            state: 2
+          });
+        } else { // 回答错误， 设置状态为-1
           that.setData({
             state: -1
           });
-          that.gotoError();
+          util.gotoError();
         }
       },
       fail(res) {
@@ -120,11 +134,5 @@ Page({
       }
     })
   },
-
-  gotoError: function () {
-    wx.navigateTo({
-      url: '/pages/error/wrong/wrong'
-    })
-  }
 
 });
