@@ -5,7 +5,8 @@
     "pages/prepare/prepare",
     "pages/exam/exam",
     "pages/result/wrong/wrong",
-    "pages/result/success/success"
+    "pages/result/success/success",
+    "pages/progress/progress"
   ],
   "window": {
     "backgroundTextStyle": "light",
