@@ -7,6 +7,8 @@ const app = getApp()
 Page({
   data: {
     countDownNum: 3,
+    b11: "",
+    b22: "",
   },
   onLoad: function() {
     var examContext = globalData.variable.examContext;
@@ -40,9 +42,25 @@ Page({
 
   gotoExam: function() {
 
-    wx.navigateTo({
-      url: '/pages/exam/exam',
+    // wx.navigateTo({
+    //   url: '/pages/exam/exam',
+    // })
+  },
+
+  b1: function() {
+    this.setData({
+      b11:"rotateY(180deg)",
+      b22:"rotateY(0deg)"
     })
+    console.log("b1")
+  },
+
+  b2: function(){
+    this.setData({
+      b11: "rotateY(0deg)",
+      b22: "rotateY(-180deg)"
+    })
+    console.log("b2")
   }
 
 })
