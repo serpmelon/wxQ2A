@@ -48,7 +48,7 @@ Page({
       console.log("game over");
       return;
     }
-debugger
+
     if (num <= 0) {
       if (this.data.state == 1) {
         this.reply(this.data.showQA.id, -1);

@@ -8,9 +8,6 @@
     </block>
   </view>
   <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-  <view>
-    <button bindtap="start">开始</button>
+    <button class="user-motto" bindtap="start">{{motto}}</button>
   </view>
 </view>

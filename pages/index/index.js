@@ -73,14 +73,13 @@ Page({
       },
       success(res) {
         console.log(res.data)
-        if (res.data.code == 1) { // 成功则跳转
-
+        if (res.data.code == -2) { // -2表示用户没有登陆
+          // todo 实现提示用户去登陆
+        } else { // 否则就跳转
           wx.navigateTo({
             url: '/pages/prepare/prepare?name=' + userInfo.nickName + '&pic=' +
               userInfo.avatarUrl
           })
-        } else if (res.data.code == -2) { // -2表示用户没有登陆
-          // todo 实现提示用户去登陆
         }
       }
     })
