@@ -1,4 +1,3 @@
-
 var util = require('../../utils/util.js');
 var globalData = require('../../utils/constant.js');
 
@@ -7,12 +6,14 @@ const app = getApp()
 Page({
   data: {
     countDownNum: 3,
-    b11: "",
-    b22: "",
+    rotateBlue: "rotateY(0deg)",
+    rotateBlueAngle: 0,
+    rotateRed: "rotateY(-180deg)",
+    rotateRedAngle: -180,
   },
   onLoad: function() {
     var examContext = globalData.variable.examContext;
-    if(examContext) {
+    if (examContext) {
       util.examContentInit();
     }
   },
@@ -28,9 +29,12 @@ Page({
       this.gotoExam()
     } else {
       num--;
+      
       this.setData({
         countDownNum: num
       })
+
+      this.rotate();
 
       const that = this;
       setTimeout(function() {
@@ -47,20 +51,28 @@ Page({
     // })
   },
 
-  b1: function() {
+  rotate: function() {
+
+    var blue = this.data.rotateBlueAngle;
+    var red = this.data.rotateRedAngle;
+
+    blue += 180;
+    red += 180;
+
     this.setData({
-      b11:"rotateY(180deg)",
-      b22:"rotateY(0deg)"
+      rotateBlueAngle: blue,
+      rotateRedAngle: red,
+      rotateBlue: this.createRotate(blue),
+      rotateRed: this.createRotate(red),
     })
-    console.log("b1")
   },
 
-  b2: function(){
-    this.setData({
-      b11: "rotateY(0deg)",
-      b22: "rotateY(-180deg)"
-    })
-    console.log("b2")
-  }
+  createRotate: function(rotateAngle) {
+
+    var tmp = "rotateY(" + rotateAngle + "deg)";
+
+    console.log(tmp);
+    return tmp;
+  },
 
 })

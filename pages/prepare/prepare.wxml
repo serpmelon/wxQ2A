@@ -1,10 +1,11 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="usermotto">
-    <text class="user-motto">{{countDownNum}}</text>
-  </view>
   <view class="main">
-      <view class="box b1" style="transform:{{b11}};" bindtap="b1"></view>
-      <view class="box b2" style="transform:{{b22}};" bindtap="b2"></view>
+    <view class="box b1" style="transform:{{rotateBlue}};" >
+      <view class="countDownNum">{{countDownNum}}</view>
+    </view>
+    <view class="box b2" style="transform:{{rotateRed}};" >
+      <view class="countDownNum">{{countDownNum}}</view>
+    </view>
   </view>
 </view>

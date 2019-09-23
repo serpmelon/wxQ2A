@@ -20,10 +20,17 @@
   margin-top: 200px;
 }
 
+.countDownNum {
+  font-weight: 700;
+  font-size: 200px;
+  text-align: center;
+  /* line-height: 20; */
+}
+
 .main {
 
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   width: 300px;
   height: 300px;
@@ -35,35 +42,20 @@
 .box {
 
   position: absolute;
-
   top: 0;
-
   left: 0;
-
   width: 300px;
-
   height: 300px;
-
   transition: all 1s;
-
   backface-visibility: hidden;
-
   border-radius: 10px;
-
   cursor: pointer;
-
 }
 
 .b1{
-
   background:skyblue;
-
 }
 
 .b2 {
-
   background:tomato;
-
-  transform: rotateY(-180deg);
-
 }
