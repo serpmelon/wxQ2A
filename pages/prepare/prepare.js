@@ -5,7 +5,7 @@ const app = getApp()
 
 Page({
   data: {
-    countDownNum: 3,
+    countDownNum: 1,
     rotateBlue: "rotateY(0deg)",
     rotateBlueAngle: 0,
     rotateRed: "rotateY(-180deg)",
@@ -46,9 +46,9 @@ Page({
 
   gotoExam: function() {
 
-    // wx.navigateTo({
-    //   url: '/pages/exam/exam',
-    // })
+    wx.navigateTo({
+      url: '/pages/exam/exam',
+    })
   },
 
   rotate: function() {
