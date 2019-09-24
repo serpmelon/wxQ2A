@@ -15,7 +15,8 @@ Page({
     // 每道题倒计时时间
     countDownNum: globalData.constant.examCountdown,
     // 答题状态 1表示未答题 2正确 -1 错误
-    state: 1
+    state: 1,
+    progress: 0
   },
 
   onLoad: function() {
@@ -69,7 +70,8 @@ Page({
     } else {
       num--;
       this.setData({
-        countDownNum: num
+        countDownNum: num,
+        progress: num / this.data.countDownNum
       })
 
       const that = this;
