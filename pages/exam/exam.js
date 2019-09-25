@@ -50,32 +50,35 @@ Page({
       return;
     }
 
-    if (num <= 0) {
-      if (this.data.state == 1) {
+    if (num <= 0) { // 倒计时结束
+      if (this.data.state == 1) { // 未答题
         this.reply(this.data.showQA.id, -1);
         util.gotoError();
       }
+      // 没结束则下一道题
       index++;
       this.setData({
         index: index,
         countDownNum: 3,
         showQA: this.data.QA[index]
       });
-      const that = this;
-      setTimeout(function() {
+      const that = this; // 这里必须将this赋值出来
+      setTimeout(function() { // 递归继续
         console.log("count " + num);
         that.countDown();
       }, 1000)
 
-    } else {
+    } else { // 倒计时
       num--;
+      var percent = (1 - num / globalData.constant.examCountdown) * 100;
+      console.log('num ' + num + 'percent ' + percent);
       this.setData({
         countDownNum: num,
-        progress: num / this.data.countDownNum
+        progress: percent
       })
 
       const that = this;
-      if (this.data.state == 2) {
+      if (this.data.state == 1) {
         setTimeout(function() {
           console.log("count " + num);
           that.countDown();
@@ -124,8 +127,12 @@ Page({
           that.setData({
             state: 2
           });
-        } else { // 回答错误， 设置状态为-1
+        } else if (answerId == 1) { // 答题超时，设置状态为-1
           that.setData({
+            state: -1
+          });
+        } else {
+          that.setData({ // 回答错误， 设置状态为-1
             state: -1
           });
           util.gotoError();
