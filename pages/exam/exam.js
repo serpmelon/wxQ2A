@@ -35,6 +35,11 @@ Page({
     this.countDown();
   },
 
+  onUnload: function() {
+debugger
+    console.log("unload")
+  },
+
   /**
    * 倒计时
    */

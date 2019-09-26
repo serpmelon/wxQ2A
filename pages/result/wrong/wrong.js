@@ -41,6 +41,7 @@ Page({
    */
   onUnload: function () {
 
+    console.log("unload")
   },
 
   /**

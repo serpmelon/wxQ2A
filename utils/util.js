@@ -115,3 +115,20 @@ function gotoUrl(url) {
     url: url
   })
 }
+
+/**
+ * 验证有没有答题资格，true有
+ */
+function hasAuthOfExam() {
+
+  var examAuth = wx.getStorageSync("examAuth");
+}
+
+/**
+ * 设置答题资格
+ */
+function setAuthExam() {
+
+var examAuth = wx.getStorageSync(key);
+  wx.setStorageSync("examAuth", examAuth);
+}

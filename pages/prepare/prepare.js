@@ -19,7 +19,8 @@ Page({
   },
   onShow: function() {
 
-    this.countDown()
+    
+    this.countDown();
   },
 
   countDown: function() {
